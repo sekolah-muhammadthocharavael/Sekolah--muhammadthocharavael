@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMK NEGERI 7 BATAM</title>
+    <!-- Google Fonts untuk font Poppins yang digunakan dalam desain -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Gaya dasar dan reset */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Tata letak utama */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* --- HEADER --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #fff;
+        }
+
+        .header-logo {
+            height: 50px;
+        }
+
+        .hamburger-menu {
+            display: none; /* Sembunyikan secara default, hanya tampil di mobile */
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 100%;
+            height: 3px;
+            background-color: #333;
+            border-radius: 2px;
+        }
+
+        .nav-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            animation: slideIn 0.3s forwards;
+            overflow-y: auto;
+        }
+
+        .nav-menu.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        .nav-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 50px;
+        }
+
+        .nav-menu li {
+            padding: 15px 0;
+            border-bottom: 1px solid #555;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero-section {
+            position: relative;
+            height: 400px; /* Sesuaikan tinggi sesuai kebutuhan */
+            background-image: url('https://placehold.co/1200x800/8c8c8c/ffffff?text=Background');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            color: #fff;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Overlay gelap */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 30px;
+        }
+
+        .hero-text {
+            border-left: 3px solid #ffc107; /* Garis vertikal oranye */
+            padding-left: 15px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .hero-text p {
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        /* --- STATS SECTION --- */
+        .stats-section {
+            background-color: #ffc107; /* Warna kuning-oranye */
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-number {
+            font-size: 4em;
+            font-weight: 700;
+            color: #007bff;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            font-weight: 500;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        
+        /* --- IDENTITY SECTION --- */
+        .identity-section {
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #007bff; /* Garis biru di bawah judul */
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 15px 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 1em;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tab-button::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            color: #007bff;
+            font-weight: 600;
+        }
+
+        .tab-button.active::after {
+            background-color: #007bff;
+        }
+
+        .identity-content {
+            padding: 20px;
+        }
+
+        .identity-content p {
+            margin: 10px 0;
+        }
+
+        .identity-content strong {
+            font-weight: 600;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background-color: #212529;
+            color: #f8f9fa;
+            padding: 40px 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer h4 {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #fff;
+        }
+
+        .map-container {
+            border: 1px solid #444;
+            padding: 10px;
+            background-color: #fff;
+            color: #333;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .map-container h5 {
+            font-size: 1em;
+            margin: 0 0 5px;
+        }
+        
+        .map-iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+            margin-top: 10px;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.8em;
+            color: #adb5bd;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: flex;
+            }
+            .nav-menu {
+                display: none;
+            }
+            .hero-section {
+                height: 300px;
+            }
+            .hero-text h1 {
+                font-size: 2em;
+            }
+            .hero-text p {
+                font-size: 0.9em;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <img src="https://placehold.co/100x50/ffc107/000000?text=LOGO" alt="Logo SMK Negeri 7" class="header-logo">
+        <button class="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+    </header>
+
+    <!-- Navigation Menu (Mobile) -->
+    <nav class="nav-menu">
+        <span class="nav-close">&times;</span>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Profil</a></li>
+            <li><a href="#">Program</a></li>
+            <li><a href="#">Kegiatan</a></li>
+            <li><a href="#">Berita</a></li>
+            <li><a href="#">Kontak</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>SELAMAT DATANG di<br>SMK NEGERI 7 BATAM</h1>
+                <p>SMK Negeri 7 Batam Mewujudkan Peserta Didik yang Beriman, Bertaqwa kepada TUHAN YANG MAHA ESA, dan Berakhlak Mulia, Terampil, Unggul, dan Berdaya Saing Global di Era Teknologi Digital.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">0</div>
+                <div class="stat-label">GURU DAN TENAGA KEPENDIDIKAN</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">0</div>
+                <div class="stat-label">ROMBEL</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">0</div>
+                <div class="stat-label">KONSENTRASI KEAHLIAN</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">0</div>
+                <div class="stat-label">PESERTA DIDIK</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Identity Section -->
+    <section class="identity-section">
+        <h2 class="section-title">IDENTITAS SEKOLAH</h2>
+        <div class="tabs">
+            <button class="tab-button active" data-tab="identity">Identitas Sekolah</button>
+            <button class="tab-button" data-tab="contact">Kontak</button>
+            <button class="tab-button" data-tab="availability">Ketersediaan</button>
+        </div>
+        <div class="identity-content">
+            <div id="tab-identity" class="tab-pane active">
+                <p><strong>Akreditasi :</strong> A</p>
+                <p><strong>Kurikulum :</strong> Kurikulum Merdeka</p>
+                <p><strong>NPSN :</strong> 69774885</p>
+                <p><strong>Status :</strong> Negeri</p>
+                <p><strong>Bentuk Pendidikan :</strong> SMK</p>
+                <p><strong>Status Kepemilikan :</strong> Pemerintah Daerah</p>
+                <p><strong>SK Pendirian Sekolah :</strong> KPTS.367/HK/IX/2014</p>
+                <p><strong>Tanggal SK Pendirian :</strong> 2014-09-05</p>
+                <p><strong>SK Izin Operasional :</strong> KPTS.367/HK/IX/2014</p>
+                <p><strong>Tanggal SK Izin Operasional :</strong> 2015-10-23</p>
+            </div>
+            <div id="tab-contact" class="tab-pane" style="display: none;">
+                <p>Konten untuk Kontak...</p>
+            </div>
+            <div id="tab-availability" class="tab-pane" style="display: none;">
+                <p>Konten untuk Ketersediaan...</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-links">
+                <h4>Tautan Penting</h4>
+                <ul>
+                    <li><a href="#">Disdik Kota Batam</a></li>
+                    <li><a href="#">Disdik Provinsi Kepri</a></li>
+                    <li><a href="#">Dapodik SMK Negeri 7 Batam</a></li>
+                    <li><a href="#">Peta Lokasi SMK Negeri 7 Batam</a></li>
+                </ul>
+            </div>
+            <div class="footer-about">
+                <h4>Tentang Kami</h4>
+                <p>Perumahan Sekawan Pemko, Kelurahan, Belian, Kec. Batam Kota, Kota Batam, Prov. Kepulauan Riau</p>
+                <p>Kode Pos : 29463</p>
+                <p>smknegeri7batam@gmail.com</p>
+            </div>
+            <div class="map-container">
+                <h4>Lokasi</h4>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.941916327389!2d104.05389641475395!3d1.103006399120611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d98cc6c92d5069%3A0x892e59273c528f89!2sSMK%20Negeri%207%20Batam!5e0!3m2!1sen!2sid!4v1620352528148!5m2!1sen!2sid" allowfullscreen="" loading="lazy" class="map-iframe"></iframe>
+            </div>
+        </div>
+        <div class="copyright">
+            @2024 Hak Cipta, SMK NEGERI 7 BATAM
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk interaktivitas -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Logika untuk menu hamburger
+            const hamburger = document.querySelector('.hamburger-menu');
+            const navMenu = document.querySelector('.nav-menu');
+            const navClose = document.querySelector('.nav-close');
+
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.add('active');
+            });
+
+            navClose.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+            
+            // Logika untuk tab
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetTab = button.dataset.tab;
+
+                    // Hapus kelas aktif dari semua tombol dan panel
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabPanes.forEach(pane => pane.style.display = 'none');
+
+                    // Tambahkan kelas aktif ke tombol yang diklik
+                    button.classList.add('active');
+                    
+                    // Tampilkan panel yang sesuai
+                    document.getElementById(`tab-${targetTab}`).style.display = 'block';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
